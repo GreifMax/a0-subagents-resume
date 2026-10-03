@@ -1,0 +1,18 @@
+# Subagent Resume plugin settings
+enabled: true
+
+# Rebuild parent<->subordinate in-memory links from persisted output_data
+restore_links: true
+
+# Append a synthetic tool result for tool calls interrupted by stop/restart
+repair_dangling: true
+
+# Show preserved subordinate chats in extras to guide continuation
+rehydrate_parallel: true
+
+# Inject continuation hints into the prompt (temporary extras)
+inject_hints: true
+
+# Async subordinates with wakeup:true resume the parent when they finish
+# (only when the parent is idle; otherwise results arrive via normal extras)
+wakeup: true

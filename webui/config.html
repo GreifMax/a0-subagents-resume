@@ -1,0 +1,118 @@
+<html>
+<head><title>Subagent Resume</title></head>
+<body>
+  <div x-data>
+    <template x-if="config">
+      <div>
+        <div class="section-title">Subagent Resume</div>
+        <div class="section-description">
+          Restore parent/subordinate links after stop or restart and repair
+          interrupted tool calls so the agent continues the preserved
+          subordinate instead of starting a duplicate.
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-title">Enabled</div>
+            <div class="field-description">
+              Master switch for all plugin behavior.
+            </div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" x-model="config.enabled"
+                x-init="if (config.enabled == null) config.enabled = true">
+              <span class="toggler"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-title">Restore subordinate links</div>
+            <div class="field-description">
+              Rebuild parent&lt;-&gt;subordinate links from persisted chat data so a
+              finished subordinate calls back its parent after restart.
+            </div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" x-model="config.restore_links"
+                x-init="if (config.restore_links == null) config.restore_links = true">
+              <span class="toggler"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-title">Repair interrupted tool calls</div>
+            <div class="field-description">
+              Append a synthetic result for tool calls cut off by stop/restart;
+              includes a pointer to the preserved subordinate chat.
+            </div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" x-model="config.repair_dangling"
+                x-init="if (config.repair_dangling == null) config.repair_dangling = true">
+              <span class="toggler"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-title">Continuation hints</div>
+            <div class="field-description">
+              Show preserved subordinate chats in the prompt so the agent
+              continues them (context_id + reset=false) instead of delegating anew.
+            </div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" x-model="config.inject_hints"
+                x-init="if (config.inject_hints == null) config.inject_hints = true">
+              <span class="toggler"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-title">Async wakeup</div>
+            <div class="field-description">
+              Subordinates launched with wakeup:true inside parallel jobs resume
+              the parent automatically when they finish (only if the parent is
+              idle; otherwise results arrive via the normal extras block).
+            </div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" x-model="config.wakeup"
+                x-init="if (config.wakeup == null) config.wakeup = true">
+              <span class="toggler"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">
+            <div class="field-title">Preserve parallel job hints</div>
+            <div class="field-description">
+              Keep listing preserved parallel-worker contexts in the hint block.
+            </div>
+          </div>
+          <div class="field-control">
+            <label class="toggle">
+              <input type="checkbox" x-model="config.rehydrate_parallel"
+                x-init="if (config.rehydrate_parallel == null) config.rehydrate_parallel = true">
+              <span class="toggler"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</body>
+</html>

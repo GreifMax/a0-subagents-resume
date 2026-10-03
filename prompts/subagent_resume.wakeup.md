@@ -1,0 +1,3 @@
+## Async subordinate wakeup (subagent_resume plugin)
+
+When you launch a `call_subordinate` call inside the `parallel` tool with `wait: false`, you may include `"wakeup": true` in its `tool_args`. A wakeup subordinate that finishes while you are idle (you already responded to the user) will automatically resume you with a system message telling you to collect its result via the `parallel` tool and `job_ids`. If you are still working when it finishes, its result stays in the normal `parallel jobs` extras block. Only set `wakeup: true` when you want to be resumed automatically as soon as the subordinate finishes; otherwise omit it.

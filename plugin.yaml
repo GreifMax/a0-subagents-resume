@@ -1,0 +1,12 @@
+name: subagent_resume
+title: Subagent Resume
+description: >
+  Re-links parent and subordinate chats after a stop or restart, repairs
+  interrupted tool calls in history, guides the agent to continue the
+  preserved subordinate instead of spawning a duplicate, and optionally
+  resumes the parent automatically when async wakeup subordinates finish.
+version: 1.1.0
+settings_sections:
+  - agent
+per_project_config: false
+per_agent_config: false
